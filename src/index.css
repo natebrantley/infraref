@@ -80,12 +80,14 @@ body {
     display: flex;
     position: fixed;
     top: max(12px, env(safe-area-inset-top));
-    left: 12px;
+    right: 12px;
+    left: auto;
     z-index: 101;
   }
   .app-main {
     padding: 16px 12px;
     padding-top: calc(56px + env(safe-area-inset-top));
+    padding-right: calc(12px + 44px + 12px);
   }
   .app-header {
     display: flex;
@@ -112,6 +114,6 @@ body {
 }
 
 @media (max-width: 480px) {
-  .app-main { padding: 12px 10px; padding-top: calc(56px + env(safe-area-inset-top)); }
+  .app-main { padding: 12px 10px; padding-top: calc(56px + env(safe-area-inset-top)); padding-right: calc(10px + 44px + 10px); }
   .app-title { font-size: 22px !important; }
 }
