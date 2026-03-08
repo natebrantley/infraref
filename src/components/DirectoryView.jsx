@@ -28,6 +28,7 @@ export function DirectoryView() {
     <div>
       <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", marginBottom: "16px", alignItems: "center" }}>
         <input
+          className="directory-search"
           value={search} onChange={e => setSearch(e.target.value)}
           placeholder="Search firms or disciplines..."
           style={{
@@ -45,9 +46,9 @@ export function DirectoryView() {
         {btn(dbeFilter, "DBE/SBE Only", () => setDbeFilter(!dbeFilter))}
       </div>
 
-      <div style={{ display: "grid", gap: "6px" }}>
+      <div className="directory-firm-grid" style={{ display: "grid", gap: "6px" }}>
         {filtered.map(firm => (
-          <div key={firm.name} style={{
+          <div key={firm.name} className="directory-firm-card" style={{
             background: "#0f1117", border: "1px solid #1e2433", borderRadius: "4px",
             padding: "12px 16px", display: "grid", gridTemplateColumns: "1fr auto", gap: "8px"
           }}>

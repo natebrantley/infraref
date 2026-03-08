@@ -7,6 +7,7 @@ export function ReferenceItem({ item, onOpenDetail }) {
   const hasExternalLink = item.url && item.url !== "#";
   return (
     <div
+      className="reference-item"
       onClick={() => setOpen(!open)}
       style={{
         borderLeft: "2px solid #2a2a2a", paddingLeft: "12px", marginBottom: "8px",

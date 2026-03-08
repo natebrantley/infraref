@@ -105,6 +105,7 @@ export function CalendarView() {
                   return (
                     <div
                       key={`${evt.date}-${i}`}
+                      className="calendar-event-grid"
                       style={{
                         background: "#0f1117",
                         border: "1px solid #1e2433",

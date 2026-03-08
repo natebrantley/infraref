@@ -7,21 +7,27 @@ import {
   DirectoryView,
   CalendarView,
   ProjectDetailView,
-  AIPanel,
 } from "./components/index.js";
 
 export default function InfraRef() {
   const [activeModule, setActiveModule] = useState("highway");
-  const [showAI, setShowAI] = useState(true);
   const [stateFilter, setStateFilter] = useState("ALL");
   const [selectedDetailSlug, setSelectedDetailSlug] = useState(null);
+  const [navOpen, setNavOpen] = useState(false);
 
   const module = CONTENT[activeModule];
+  const closeNav = () => setNavOpen(false);
+  const selectModule = (id) => {
+    setActiveModule(id);
+    closeNav();
+  };
 
   return (
-    <div style={{ display: "flex", height: "100vh", background: "#080a0e", overflow: "hidden", fontFamily: "'Libre Franklin', sans-serif" }}>
+    <div className="app-layout" style={{ background: "#080a0e", fontFamily: "'Libre Franklin', sans-serif" }}>
+      <button type="button" className="nav-toggle" onClick={() => setNavOpen(true)} aria-label="Open menu">☰</button>
+      <div className={`nav-overlay ${navOpen ? "nav-open" : ""}`} onClick={closeNav} aria-hidden="true" />
       {/* LEFT NAV */}
-      <div style={{ width: "220px", minWidth: "220px", background: "#04050a", borderRight: "1px solid #1e2433", display: "flex", flexDirection: "column" }}>
+      <nav className={`app-nav ${navOpen ? "nav-open" : ""}`} aria-label="Main">
         <div style={{ padding: "20px 16px 16px", borderBottom: "1px solid #1e2433" }}>
           <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "28px", color: "#f97316", letterSpacing: "0.12em", lineHeight: 1 }}>INFRAREF</div>
           <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "9px", color: "#334155", marginTop: "4px", letterSpacing: "0.1em" }}>OREGON · WASHINGTON</div>
@@ -29,6 +35,7 @@ export default function InfraRef() {
             {["ALL","OR","WA"].map(s => (
               <button
                 key={s}
+                type="button"
                 onClick={() => setStateFilter(s)}
                 style={{
                   fontFamily: "'JetBrains Mono', monospace", fontSize: "9px", padding: "2px 8px",
@@ -46,7 +53,7 @@ export default function InfraRef() {
             <div
               key={m.id}
               className="module-item"
-              onClick={() => setActiveModule(m.id)}
+              onClick={() => selectModule(m.id)}
               style={{
                 padding: "9px 16px", cursor: "pointer", transition: "background 0.1s",
                 borderLeft: `2px solid ${activeModule === m.id ? "#f97316" : "transparent"}`,
@@ -62,31 +69,19 @@ export default function InfraRef() {
             </div>
           ))}
         </div>
-
-        <div style={{ padding: "12px 16px", borderTop: "1px solid #1e2433" }}>
-          <button
-            onClick={() => setShowAI(!showAI)}
-            style={{
-              width: "100%", fontFamily: "'JetBrains Mono', monospace", fontSize: "11px",
-              padding: "8px", border: `1px solid ${showAI ? "#f97316" : "#2a2a2a"}`,
-              background: showAI ? "#f9731611" : "transparent",
-              color: showAI ? "#f97316" : "#475569", borderRadius: "3px", cursor: "pointer"
-            }}
-          >{showAI ? "▶ AI Assistant ON" : "▷ AI Assistant OFF"}</button>
-        </div>
-      </div>
+      </nav>
 
       {/* MAIN CONTENT */}
-      <div style={{ flex: 1, overflowY: "auto", padding: "28px 32px", animation: "fadeIn 0.2s ease" }}>
+      <main className="app-main">
         {selectedDetailSlug ? (
           <ProjectDetailView slug={selectedDetailSlug} onBack={() => setSelectedDetailSlug(null)} />
         ) : (
           <>
-            <div style={{ marginBottom: "24px", borderBottom: "1px solid #1e2433", paddingBottom: "20px" }}>
-          <div style={{ display: "flex", alignItems: "baseline", gap: "12px", flexWrap: "wrap" }}>
-            <h1 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "36px", color: "#f1f5f9", letterSpacing: "0.08em" }}>{module.title}</h1>
-            <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "11px", color: "#475569" }}>{module.subtitle}</span>
-          </div>
+            <div className="app-header" style={{ marginBottom: "24px", borderBottom: "1px solid #1e2433", paddingBottom: "20px" }}>
+              <div style={{ display: "flex", alignItems: "baseline", gap: "12px", flexWrap: "wrap", flex: 1 }}>
+                <h1 className="app-title" style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "36px", color: "#f1f5f9", letterSpacing: "0.08em" }}>{module.title}</h1>
+                <span className="app-subtitle" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "11px", color: "#475569" }}>{module.subtitle}</span>
+              </div>
             </div>
 
         {module.isDirectory ? (
@@ -97,7 +92,7 @@ export default function InfraRef() {
           <div style={{ display: "grid", gap: "28px" }}>
             {module.sections.map((sec, si) => (
               <div key={si}>
-                <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "10px", color: "#f97316", letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: "12px", display: "flex", alignItems: "center", gap: "8px" }}>
+                <div className="content-section-heading" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "10px", color: "#f97316", letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: "12px", display: "flex", alignItems: "center", gap: "8px" }}>
                   <span style={{ width: "20px", height: "1px", background: "#f97316", display: "inline-block" }} />
                   {sec.heading}
                 </div>
@@ -119,7 +114,7 @@ export default function InfraRef() {
                   <span style={{ width: "20px", height: "1px", background: "#60a5fa", display: "inline-block" }} />
                   Key Contacts & Resources
                 </div>
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))", gap: "8px" }}>
+                <div className="contact-cards-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))", gap: "8px" }}>
                   {module.contacts.map((c, ci) => <ContactCard key={ci} contact={c} />)}
                 </div>
               </div>
@@ -138,9 +133,7 @@ export default function InfraRef() {
         )}
           </>
         )}
-      </div>
-
-      {showAI && <AIPanel onClose={() => setShowAI(false)} />}
+      </main>
     </div>
   );
 }

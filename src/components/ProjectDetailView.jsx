@@ -146,7 +146,7 @@ export function ProjectDetailView({ slug, onBack }) {
           <span style={{ width: "20px", height: "1px", background: "#60a5fa", display: "inline-block" }} />
           Related parties — quick reference
         </div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))", gap: "10px" }}>
+        <div className="project-detail-parties" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))", gap: "10px" }}>
           {project.relatedParties.map((party, i) => (
             <PartyCard key={i} party={party} />
           ))}
