@@ -1,4 +1,5 @@
 export function ContactCard({ contact }) {
+  if (!contact) return null;
   const stateColor = contact.state === "OR" ? "#4ade80" : contact.state === "WA" ? "#60a5fa" : "#c084fc";
   return (
     <div

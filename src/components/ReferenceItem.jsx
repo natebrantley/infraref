@@ -3,12 +3,19 @@ import { TagBadge } from "./TagBadge.jsx";
 
 export function ReferenceItem({ item, onOpenDetail }) {
   const [open, setOpen] = useState(false);
+  if (!item) return null;
   const hasDetailPage = item.detailSlug && onOpenDetail;
   const hasExternalLink = item.url && item.url !== "#";
+  const toggle = () => setOpen((o) => !o);
   return (
     <div
       className="reference-item"
-      onClick={() => setOpen(!open)}
+      role="button"
+      tabIndex={0}
+      onClick={toggle}
+      onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(); } }}
+      aria-expanded={open}
+      aria-label={item.label ? `Expand: ${item.label}` : "Reference item"}
       style={{
         borderLeft: "2px solid #2a2a2a", paddingLeft: "12px", marginBottom: "8px",
         cursor: "pointer", transition: "border-color 0.15s"
@@ -19,7 +26,7 @@ export function ReferenceItem({ item, onOpenDetail }) {
       <div style={{ display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap" }}>
         <TagBadge tag={item.tag} />
         <span style={{ fontFamily: "'Libre Franklin', sans-serif", fontSize: "14px", color: "#e2e8f0", fontWeight: 500 }}>
-          {item.label}
+          {item.label ?? "Untitled"}
         </span>
       </div>
       {open && (

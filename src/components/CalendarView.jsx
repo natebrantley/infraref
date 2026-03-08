@@ -33,8 +33,9 @@ export function CalendarView() {
   const filtered = useMemo(() => {
     return CALENDAR_EVENTS.filter((e) => {
       if (typeFilter !== "all" && e.type !== typeFilter) return false;
-      if (stateFilter !== "ALL" && e.tag !== stateFilter) return false;
-      return true;
+      if (stateFilter === "ALL") return true;
+      if (stateFilter === "FED") return e.tag === "FED";
+      return e.tag === stateFilter || e.tag === "OR/WA";
     }).sort((a, b) => a.date.localeCompare(b.date));
   }, [typeFilter, stateFilter]);
 
@@ -68,7 +69,7 @@ export function CalendarView() {
 
   return (
     <div>
-      <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", marginBottom: "20px", alignItems: "center" }}>
+      <div role="group" aria-label="Filter calendar by type and state" style={{ display: "flex", gap: "8px", flexWrap: "wrap", marginBottom: "20px", alignItems: "center" }}>
         <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "11px", color: "#64748b", marginRight: "4px" }}>Type:</span>
         {CALENDAR_EVENT_TYPES.map((t) => btn(typeFilter === t.id, t.label, () => setTypeFilter(t.id)))}
         <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "11px", color: "#64748b", marginLeft: "12px", marginRight: "4px" }}>State:</span>

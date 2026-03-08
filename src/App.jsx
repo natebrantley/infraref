@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { MODULES, CONTENT } from "./data/index.js";
 import {
   ReferenceItem,
@@ -9,18 +9,92 @@ import {
   ProjectDetailView,
 } from "./components/index.js";
 
+const DEFAULT_MODULE = MODULES[0]?.id ?? "highway";
+
+function matchStateFilter(stateFilter, tag) {
+  if (stateFilter === "ALL") return true;
+  if (tag === "OR/WA") return stateFilter === "OR" || stateFilter === "WA";
+  return tag === stateFilter;
+}
+
+function matchSolicitationState(stateFilter, agency) {
+  if (stateFilter === "ALL") return true;
+  const a = (agency || "").toUpperCase();
+  if (stateFilter === "OR") return a.includes("ODOT") || a.includes("TRIMET");
+  if (stateFilter === "WA") return a.includes("WSDOT") || a.includes("SOUND TRANSIT");
+  return true;
+}
+
+function getInitialFromHash() {
+  if (typeof window === "undefined") return { module: DEFAULT_MODULE, slug: null };
+  const hash = window.location.hash.slice(1) || "";
+  const [mod, slug] = hash.split("/");
+  return {
+    module: CONTENT[mod] ? mod : DEFAULT_MODULE,
+    slug: slug || null,
+  };
+}
+
 export default function InfraRef() {
-  const [activeModule, setActiveModule] = useState("highway");
+  const [activeModule, setActiveModule] = useState(() => getInitialFromHash().module);
+  const [selectedDetailSlug, setSelectedDetailSlug] = useState(() => getInitialFromHash().slug);
   const [stateFilter, setStateFilter] = useState("ALL");
-  const [selectedDetailSlug, setSelectedDetailSlug] = useState(null);
   const [navOpen, setNavOpen] = useState(false);
 
-  const module = CONTENT[activeModule];
+  const module = CONTENT[activeModule] ?? CONTENT[DEFAULT_MODULE];
   const closeNav = () => setNavOpen(false);
+
+  useEffect(() => {
+    const hash = selectedDetailSlug
+      ? `${activeModule}/${selectedDetailSlug}`
+      : activeModule;
+    const target = hash ? `#${hash}` : "#";
+    if (window.location.hash !== target) window.history.replaceState(null, "", target);
+  }, [activeModule, selectedDetailSlug]);
+
+  useEffect(() => {
+    const onHashChange = () => {
+      const { module: mod, slug } = getInitialFromHash();
+      setActiveModule(mod);
+      setSelectedDetailSlug(slug);
+    };
+    window.addEventListener("hashchange", onHashChange);
+    return () => window.removeEventListener("hashchange", onHashChange);
+  }, []);
+
+  useEffect(() => {
+    const onKeyDown = (e) => {
+      if (e.key === "Escape") closeNav();
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, []);
+
   const selectModule = (id) => {
     setActiveModule(id);
+    setSelectedDetailSlug(null);
     closeNav();
   };
+
+  const filteredSections = useMemo(() => {
+    if (!module?.sections) return [];
+    return module.sections
+      .map((sec) => ({
+        ...sec,
+        items: (sec.items || []).filter((item) => matchStateFilter(stateFilter, item.tag)),
+      }))
+      .filter((sec) => sec.items.length > 0);
+  }, [module, stateFilter]);
+
+  const filteredContacts = useMemo(() => {
+    if (!module?.contacts) return [];
+    return module.contacts.filter((c) => matchStateFilter(stateFilter, c.state));
+  }, [module, stateFilter]);
+
+  const filteredSolicitations = useMemo(() => {
+    if (!module?.solicitations) return [];
+    return module.solicitations.filter((s) => matchSolicitationState(stateFilter, s.agency));
+  }, [module, stateFilter]);
 
   return (
     <div className="app-layout" style={{ background: "#080a0e", fontFamily: "'Libre Franklin', sans-serif" }}>
@@ -53,7 +127,11 @@ export default function InfraRef() {
             <div
               key={m.id}
               className="module-item"
+              role="button"
+              tabIndex={0}
               onClick={() => selectModule(m.id)}
+              onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); selectModule(m.id); } }}
+              aria-current={activeModule === m.id ? "page" : undefined}
               style={{
                 padding: "9px 16px", cursor: "pointer", transition: "background 0.1s",
                 borderLeft: `2px solid ${activeModule === m.id ? "#f97316" : "transparent"}`,
@@ -93,20 +171,20 @@ export default function InfraRef() {
         ) : module.isCalendar ? (
           <CalendarView />
         ) : (
-          <div className="app-content-grid" style={{ display: "grid", gap: "28px" }}>
-            {module.solicitations?.length > 0 && (
+          <div className="app-content-grid">
+            {filteredSolicitations.length > 0 && (
               <section className="solicitations-section" aria-label="Active solicitations">
                 <h2 className="solicitations-section-heading">
                   <span className="solicitations-section-heading-accent" aria-hidden="true" />
                   Active Solicitations
                 </h2>
                 <div className="solicitations-list">
-                  {module.solicitations.map((s, si) => <SolicitationRow key={si} sol={s} />)}
+                  {filteredSolicitations.map((s, si) => <SolicitationRow key={si} sol={s} />)}
                 </div>
               </section>
             )}
 
-            {module.sections.map((sec, si) =>
+            {filteredSections.map((sec, si) =>
               sec.heading === "Active Legislation Schedule" ? (
                 <section key={si} className="legislation-schedule-section" aria-label="Active legislation schedule">
                   <h2 className="legislation-schedule-section-heading">
@@ -124,11 +202,11 @@ export default function InfraRef() {
                   </div>
                 </section>
               ) : (
-                <div key={si}>
-                  <div className="content-section-heading" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "11px", color: "#f97316", letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: "12px", display: "flex", alignItems: "center", gap: "8px" }}>
-                    <span style={{ width: "20px", height: "1px", background: "#f97316", display: "inline-block" }} />
+                <div key={si} className="content-section">
+                  <h2 className="content-section-heading">
+                    <span className="content-section-heading-accent" aria-hidden="true" />
                     {sec.heading}
-                  </div>
+                  </h2>
                   <div style={{ display: "grid", gap: "6px" }} className="reference-list">
                     {sec.items.map((item, ii) => (
                       <ReferenceItem
@@ -142,16 +220,16 @@ export default function InfraRef() {
               )
             )}
 
-            {module.contacts?.length > 0 && (
-              <div>
-                <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "11px", color: "#60a5fa", letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: "12px", display: "flex", alignItems: "center", gap: "8px" }}>
-                  <span style={{ width: "20px", height: "1px", background: "#60a5fa", display: "inline-block" }} />
+            {filteredContacts.length > 0 && (
+              <section className="contacts-section" aria-label="Key contacts and resources">
+                <h2 className="contacts-section-heading">
+                  <span className="contacts-section-heading-accent" aria-hidden="true" />
                   Key Contacts & Resources
-                </div>
+                </h2>
                 <div className="contact-cards-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))", gap: "8px" }}>
-                  {module.contacts.map((c, ci) => <ContactCard key={ci} contact={c} />)}
+                  {filteredContacts.map((c, ci) => <ContactCard key={ci} contact={c} />)}
                 </div>
-              </div>
+              </section>
             )}
           </div>
         )}

@@ -1,4 +1,5 @@
 export function SolicitationRow({ sol }) {
+  if (!sol) return null;
   return (
     <article
       className="solicitation-row"
@@ -15,17 +16,17 @@ export function SolicitationRow({ sol }) {
       }}
     >
       <div className="solicitation-row-main">
-        <h3 className="solicitation-row-title">{sol.title}</h3>
-        <p className="solicitation-row-agency">{sol.agency}</p>
+        <h3 className="solicitation-row-title">{sol.title ?? ""}</h3>
+        <p className="solicitation-row-agency">{sol.agency ?? ""}</p>
       </div>
       <div className="solicitation-meta" style={{ display: "flex", gap: "16px", flexWrap: "wrap", textAlign: "right" }}>
         <div className="solicitation-meta-item">
           <span className="solicitation-meta-label">Closes</span>
-          <span className="solicitation-meta-value solicitation-meta-value--closes">{sol.closes}</span>
+          <span className="solicitation-meta-value solicitation-meta-value--closes">{sol.closes ?? ""}</span>
         </div>
         <div className="solicitation-meta-item">
           <span className="solicitation-meta-label">Est. Value</span>
-          <span className="solicitation-meta-value solicitation-meta-value--value">{sol.value}</span>
+          <span className="solicitation-meta-value solicitation-meta-value--value">{sol.value ?? ""}</span>
         </div>
       </div>
     </article>

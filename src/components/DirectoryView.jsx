@@ -26,9 +26,10 @@ export function DirectoryView() {
 
   return (
     <div className="directory-view">
-      <div className="directory-filters" style={{ display: "flex", gap: "8px", flexWrap: "wrap", marginBottom: "16px", alignItems: "center" }}>
+      <div className="directory-filters" role="group" aria-label="Filter by state and type" style={{ display: "flex", gap: "8px", flexWrap: "wrap", marginBottom: "16px", alignItems: "center" }}>
         <input
           className="directory-search"
+          aria-label="Search firms or disciplines"
           value={search} onChange={e => setSearch(e.target.value)}
           placeholder="Search firms or disciplines..."
           style={{

@@ -9,6 +9,7 @@ const TAG_COLORS = {
 };
 
 function PartyCard({ party }) {
+  if (!party) return null;
   const stateColor = TAG_COLORS[party.state] || "#94a3b8";
   return (
     <div
@@ -147,8 +148,8 @@ export function ProjectDetailView({ slug, onBack }) {
           Related parties — quick reference
         </div>
         <div className="project-detail-parties" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))", gap: "10px" }}>
-          {project.relatedParties.map((party, i) => (
-            <PartyCard key={i} party={party} />
+          {(project.relatedParties ?? []).map((party, i) => (
+            <PartyCard key={party.name ?? i} party={party} />
           ))}
         </div>
       </div>
