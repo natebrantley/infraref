@@ -90,6 +90,16 @@ export default function InfraRef() {
           <CalendarView />
         ) : (
           <div style={{ display: "grid", gap: "28px" }}>
+            {module.solicitations?.length > 0 && (
+              <div>
+                <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "11px", color: "#4ade80", letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: "12px", display: "flex", alignItems: "center", gap: "8px" }}>
+                  <span style={{ width: "20px", height: "1px", background: "#4ade80", display: "inline-block" }} />
+                  Active Solicitations
+                </div>
+                {module.solicitations.map((s, si) => <SolicitationRow key={si} sol={s} />)}
+              </div>
+            )}
+
             {module.sections.map((sec, si) => (
               <div key={si}>
                 <div className="content-section-heading" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "11px", color: "#f97316", letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: "12px", display: "flex", alignItems: "center", gap: "8px" }}>
@@ -117,16 +127,6 @@ export default function InfraRef() {
                 <div className="contact-cards-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))", gap: "8px" }}>
                   {module.contacts.map((c, ci) => <ContactCard key={ci} contact={c} />)}
                 </div>
-              </div>
-            )}
-
-            {module.solicitations?.length > 0 && (
-              <div>
-                <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "11px", color: "#4ade80", letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: "12px", display: "flex", alignItems: "center", gap: "8px" }}>
-                  <span style={{ width: "20px", height: "1px", background: "#4ade80", display: "inline-block" }} />
-                  Active Solicitations
-                </div>
-                {module.solicitations.map((s, si) => <SolicitationRow key={si} sol={s} />)}
               </div>
             )}
           </div>
