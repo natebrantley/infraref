@@ -80,7 +80,7 @@ export function CalendarView() {
           No events match the current filters.
         </div>
       ) : (
-        <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
+        <div className="app-content-grid" style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
           {byMonth.map(([monthKey, events]) => (
             <div key={monthKey}>
               <div

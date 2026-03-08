@@ -25,8 +25,8 @@ export function DirectoryView() {
   );
 
   return (
-    <div>
-      <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", marginBottom: "16px", alignItems: "center" }}>
+    <div className="directory-view">
+      <div className="directory-filters" style={{ display: "flex", gap: "8px", flexWrap: "wrap", marginBottom: "16px", alignItems: "center" }}>
         <input
           className="directory-search"
           value={search} onChange={e => setSearch(e.target.value)}

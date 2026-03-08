@@ -76,7 +76,7 @@ export function ProjectDetailView({ slug, onBack }) {
   }
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
+    <div className="project-detail-view" style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
       <div style={{ display: "flex", alignItems: "center", gap: "12px", flexWrap: "wrap" }}>
         <button
           onClick={onBack}

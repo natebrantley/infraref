@@ -73,6 +73,10 @@ export default function InfraRef() {
 
       {/* MAIN CONTENT */}
       <main className="app-main">
+        <div className="app-brand-mobile" aria-hidden="true">
+          <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "30px", color: "#f97316", letterSpacing: "0.12em", lineHeight: 1 }}>INFRAREF</div>
+          <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "9px", color: "#334155", marginTop: "4px", letterSpacing: "0.1em" }}>OREGON · WASHINGTON</div>
+        </div>
         {selectedDetailSlug ? (
           <ProjectDetailView slug={selectedDetailSlug} onBack={() => setSelectedDetailSlug(null)} />
         ) : (
@@ -89,34 +93,54 @@ export default function InfraRef() {
         ) : module.isCalendar ? (
           <CalendarView />
         ) : (
-          <div style={{ display: "grid", gap: "28px" }}>
+          <div className="app-content-grid" style={{ display: "grid", gap: "28px" }}>
             {module.solicitations?.length > 0 && (
-              <div>
-                <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "11px", color: "#4ade80", letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: "12px", display: "flex", alignItems: "center", gap: "8px" }}>
-                  <span style={{ width: "20px", height: "1px", background: "#4ade80", display: "inline-block" }} />
+              <section className="solicitations-section" aria-label="Active solicitations">
+                <h2 className="solicitations-section-heading">
+                  <span className="solicitations-section-heading-accent" aria-hidden="true" />
                   Active Solicitations
+                </h2>
+                <div className="solicitations-list">
+                  {module.solicitations.map((s, si) => <SolicitationRow key={si} sol={s} />)}
                 </div>
-                {module.solicitations.map((s, si) => <SolicitationRow key={si} sol={s} />)}
-              </div>
+              </section>
             )}
 
-            {module.sections.map((sec, si) => (
-              <div key={si}>
-                <div className="content-section-heading" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "11px", color: "#f97316", letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: "12px", display: "flex", alignItems: "center", gap: "8px" }}>
-                  <span style={{ width: "20px", height: "1px", background: "#f97316", display: "inline-block" }} />
-                  {sec.heading}
+            {module.sections.map((sec, si) =>
+              sec.heading === "Active Legislation Schedule" ? (
+                <section key={si} className="legislation-schedule-section" aria-label="Active legislation schedule">
+                  <h2 className="legislation-schedule-section-heading">
+                    <span className="legislation-schedule-section-heading-accent" aria-hidden="true" />
+                    {sec.heading}
+                  </h2>
+                  <div className="legislation-schedule-list reference-list">
+                    {sec.items.map((item, ii) => (
+                      <ReferenceItem
+                        key={ii}
+                        item={item}
+                        onOpenDetail={item.detailSlug ? (slug) => setSelectedDetailSlug(slug) : undefined}
+                      />
+                    ))}
+                  </div>
+                </section>
+              ) : (
+                <div key={si}>
+                  <div className="content-section-heading" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "11px", color: "#f97316", letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: "12px", display: "flex", alignItems: "center", gap: "8px" }}>
+                    <span style={{ width: "20px", height: "1px", background: "#f97316", display: "inline-block" }} />
+                    {sec.heading}
+                  </div>
+                  <div style={{ display: "grid", gap: "6px" }} className="reference-list">
+                    {sec.items.map((item, ii) => (
+                      <ReferenceItem
+                        key={ii}
+                        item={item}
+                        onOpenDetail={item.detailSlug ? (slug) => setSelectedDetailSlug(slug) : undefined}
+                      />
+                    ))}
+                  </div>
                 </div>
-                <div style={{ display: "grid", gap: "6px" }}>
-                  {sec.items.map((item, ii) => (
-                    <ReferenceItem
-                      key={ii}
-                      item={item}
-                      onOpenDetail={item.detailSlug ? (slug) => setSelectedDetailSlug(slug) : undefined}
-                    />
-                  ))}
-                </div>
-              </div>
-            ))}
+              )
+            )}
 
             {module.contacts?.length > 0 && (
               <div>

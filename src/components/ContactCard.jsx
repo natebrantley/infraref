@@ -1,7 +1,9 @@
 export function ContactCard({ contact }) {
   const stateColor = contact.state === "OR" ? "#4ade80" : contact.state === "WA" ? "#60a5fa" : "#c084fc";
   return (
-    <div style={{
+    <div
+      className="contact-card"
+      style={{
       background: "#0f1117", border: "1px solid #1e2433", borderRadius: "4px",
       padding: "12px 14px", display: "flex", flexDirection: "column", gap: "4px"
     }}>

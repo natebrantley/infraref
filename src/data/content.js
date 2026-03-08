@@ -4,6 +4,15 @@ export const CONTENT = {
     subtitle: "ODOT & WSDOT Design Standards Reference",
     sections: [
       {
+        heading: "Active Legislation Schedule",
+        items: [
+          { label: "News & Legislation Calendar", tag: "OR/WA", url: "#", note: "Full schedule: hearings, comment periods, legislation, rulemaking — use Calendar module to filter by type." },
+          { label: "Oregon Legislature — policy committee deadline Mar 31, sine die target May 30", tag: "OR", url: "#", note: "2026 session key dates." },
+          { label: "Washington Legislature — floor cutoff Apr 15", tag: "WA", url: "#", note: "Last day to pass bills from opposite house." },
+          { label: "Federal FY2026 appropriations / continuing resolution", tag: "FED", url: "#", note: "Transportation appropriations timeline." },
+        ]
+      },
+      {
         heading: "Primary Design Manuals",
         items: [
           { label: "ODOT Highway Design Manual (HDM)", tag: "OR", url: "#", note: "Chapter 3: Geometric Design, Chapter 8: Intersections" },
@@ -45,6 +54,12 @@ export const CONTENT = {
     subtitle: "AASHTO LRFD, ODOT & WSDOT Bridge Standards",
     sections: [
       {
+        heading: "Active Legislation Schedule",
+        items: [
+          { label: "News & Legislation Calendar", tag: "OR/WA", url: "#", note: "Hearings, comment periods, legislation — use Calendar module for full schedule." },
+        ]
+      },
+      {
         heading: "Design Standards",
         items: [
           { label: "AASHTO LRFD Bridge Design Specifications (9th Ed.)", tag: "FED", url: "#", note: "HL-93 live load, Strength I—V limit states" },
@@ -84,6 +99,12 @@ export const CONTENT = {
     title: "Transit & Rail",
     subtitle: "TriMet, Sound Transit, FTA — Pacific Northwest",
     sections: [
+      {
+        heading: "Active Legislation Schedule",
+        items: [
+          { label: "News & Legislation Calendar", tag: "OR/WA", url: "#", note: "FTA CIG, hearings, legislation — use Calendar module for full schedule." },
+        ]
+      },
       {
         heading: "Agency Standards & Programs",
         items: [

@@ -1,27 +1,33 @@
 export function SolicitationRow({ sol }) {
   return (
-    <div
+    <article
       className="solicitation-row"
       style={{
-        display: "grid", gridTemplateColumns: "1fr auto auto", gap: "12px", alignItems: "center",
-        padding: "10px 12px", background: "#0a0c10", border: "1px solid #1e2433",
-        borderRadius: "3px", marginBottom: "6px"
+        display: "grid",
+        gridTemplateColumns: "1fr auto",
+        gap: "12px",
+        alignItems: "center",
+        padding: "12px 14px",
+        background: "#0a0c10",
+        border: "1px solid #1e2433",
+        borderRadius: "4px",
+        marginBottom: 0,
       }}
     >
-      <div>
-        <div style={{ fontFamily: "'Libre Franklin', sans-serif", fontSize: "13px", color: "#e2e8f0", fontWeight: 500 }}>{sol.title}</div>
-        <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "11px", color: "#64748b", marginTop: "2px" }}>{sol.agency}</div>
+      <div className="solicitation-row-main">
+        <h3 className="solicitation-row-title">{sol.title}</h3>
+        <p className="solicitation-row-agency">{sol.agency}</p>
       </div>
-      <div className="solicitation-meta" style={{ display: "flex", gap: "12px", flexWrap: "wrap", textAlign: "right" }}>
-        <div>
-          <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "11px", color: "#94a3b8" }}>Closes</div>
-          <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "12px", color: "#fbbf24" }}>{sol.closes}</div>
+      <div className="solicitation-meta" style={{ display: "flex", gap: "16px", flexWrap: "wrap", textAlign: "right" }}>
+        <div className="solicitation-meta-item">
+          <span className="solicitation-meta-label">Closes</span>
+          <span className="solicitation-meta-value solicitation-meta-value--closes">{sol.closes}</span>
         </div>
-        <div>
-          <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "11px", color: "#94a3b8" }}>Est. Value</div>
-          <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "12px", color: "#4ade80" }}>{sol.value}</div>
+        <div className="solicitation-meta-item">
+          <span className="solicitation-meta-label">Est. Value</span>
+          <span className="solicitation-meta-value solicitation-meta-value--value">{sol.value}</span>
         </div>
       </div>
-    </div>
+    </article>
   );
 }
