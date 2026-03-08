@@ -23,7 +23,7 @@ function PartyCard({ party }) {
       }}
     >
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: "6px" }}>
-        <div style={{ fontFamily: "'Libre Franklin', sans-serif", fontSize: "13px", color: "#f1f5f9", fontWeight: 600 }}>
+        <div style={{ fontFamily: "'Libre Franklin', sans-serif", fontSize: "14px", color: "#f1f5f9", fontWeight: 600 }}>
           {party.name}
         </div>
         {party.state && (
@@ -41,20 +41,20 @@ function PartyCard({ party }) {
           </span>
         )}
       </div>
-      <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "11px", color: "#64748b" }}>{party.role}</div>
+      <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "12px", color: "#64748b" }}>{party.role}</div>
       {party.phone && (
-        <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "11px", color: "#475569" }}>{party.phone}</div>
+        <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "12px", color: "#475569" }}>{party.phone}</div>
       )}
       {party.email && (
         <a
           href={`mailto:${party.email}`}
-          style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "10px", color: "#f97316", textDecoration: "none" }}
+          style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "11px", color: "#f97316", textDecoration: "none" }}
         >
           {party.email}
         </a>
       )}
       {party.note && (
-        <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "10px", color: "#64748b", marginTop: "2px" }}>
+        <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "11px", color: "#64748b", marginTop: "2px" }}>
           {party.note}
         </div>
       )}
@@ -98,11 +98,11 @@ export function ProjectDetailView({ slug, onBack }) {
       <div style={{ borderBottom: "1px solid #1e2433", paddingBottom: "20px" }}>
         <div style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap", marginBottom: "8px" }}>
           <TagBadge tag={project.tag} />
-          <h1 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "32px", color: "#f1f5f9", letterSpacing: "0.06em" }}>
+          <h1 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "34px", color: "#f1f5f9", letterSpacing: "0.06em" }}>
             {project.label}
           </h1>
         </div>
-        <p style={{ fontFamily: "'Libre Franklin', sans-serif", fontSize: "14px", color: "#94a3b8", lineHeight: 1.6 }}>
+        <p style={{ fontFamily: "'Libre Franklin', sans-serif", fontSize: "15px", color: "#94a3b8", lineHeight: 1.6 }}>
           {project.note}
         </p>
         {project.url && (
@@ -116,7 +116,7 @@ export function ProjectDetailView({ slug, onBack }) {
               gap: "6px",
               marginTop: "12px",
               fontFamily: "'JetBrains Mono', monospace",
-              fontSize: "12px",
+              fontSize: "13px",
               color: "#f97316",
               textDecoration: "none",
               border: "1px solid #f97316",

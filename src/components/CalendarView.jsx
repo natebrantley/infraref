@@ -53,7 +53,7 @@ export function CalendarView() {
       onClick={onClick}
       style={{
         fontFamily: "'JetBrains Mono', monospace",
-        fontSize: "10px",
+        fontSize: "11px",
         padding: "4px 10px",
         border: `1px solid ${active ? "#f97316" : "#2a2a2a"}`,
         background: active ? "#f9731611" : "transparent",
@@ -69,14 +69,14 @@ export function CalendarView() {
   return (
     <div>
       <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", marginBottom: "20px", alignItems: "center" }}>
-        <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "10px", color: "#64748b", marginRight: "4px" }}>Type:</span>
+        <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "11px", color: "#64748b", marginRight: "4px" }}>Type:</span>
         {CALENDAR_EVENT_TYPES.map((t) => btn(typeFilter === t.id, t.label, () => setTypeFilter(t.id)))}
-        <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "10px", color: "#64748b", marginLeft: "12px", marginRight: "4px" }}>State:</span>
+        <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "11px", color: "#64748b", marginLeft: "12px", marginRight: "4px" }}>State:</span>
         {["ALL", "OR", "WA", "FED"].map((s) => btn(stateFilter === s, s, () => setStateFilter(s)))}
       </div>
 
       {filtered.length === 0 ? (
-        <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "12px", color: "#475569", textAlign: "center", padding: "40px" }}>
+        <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "13px", color: "#475569", textAlign: "center", padding: "40px" }}>
           No events match the current filters.
         </div>
       ) : (
@@ -86,7 +86,7 @@ export function CalendarView() {
               <div
                 style={{
                   fontFamily: "'JetBrains Mono', monospace",
-                  fontSize: "10px",
+                  fontSize: "11px",
                   color: "#f97316",
                   letterSpacing: "0.15em",
                   textTransform: "uppercase",
@@ -117,14 +117,14 @@ export function CalendarView() {
                         alignItems: "start",
                       }}
                     >
-                      <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "11px", color: "#fbbf24" }}>
+                      <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "12px", color: "#fbbf24" }}>
                         {formatDate(evt.date)}
                       </div>
                       <div>
                         <div style={{ display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap", marginBottom: "4px" }}>
                           <span
                             style={{
-                              fontSize: "9px",
+                              fontSize: "10px",
                               fontFamily: "'JetBrains Mono', monospace",
                               background: tagStyle.bg,
                               color: tagStyle.color,
@@ -137,7 +137,7 @@ export function CalendarView() {
                           </span>
                           <span
                             style={{
-                              fontSize: "9px",
+                              fontSize: "10px",
                               fontFamily: "'JetBrains Mono', monospace",
                               color: "#94a3b8",
                               background: "#0a0c10",
@@ -149,16 +149,16 @@ export function CalendarView() {
                             {TYPE_LABELS[evt.type] || evt.type}
                           </span>
                           {evt.agency && (
-                            <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "10px", color: "#64748b" }}>
+                            <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "11px", color: "#64748b" }}>
                               {evt.agency}
                             </span>
                           )}
                         </div>
-                        <div style={{ fontFamily: "'Libre Franklin', sans-serif", fontSize: "13px", color: "#e2e8f0", fontWeight: 500 }}>
+                        <div style={{ fontFamily: "'Libre Franklin', sans-serif", fontSize: "14px", color: "#e2e8f0", fontWeight: 500 }}>
                           {evt.title}
                         </div>
                         {evt.description && (
-                          <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "11px", color: "#94a3b8", marginTop: "4px", lineHeight: 1.5 }}>
+                          <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "12px", color: "#94a3b8", marginTop: "4px", lineHeight: 1.5 }}>
                             {evt.description}
                           </div>
                         )}

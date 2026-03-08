@@ -6,12 +6,12 @@ export function ContactCard({ contact }) {
       padding: "12px 14px", display: "flex", flexDirection: "column", gap: "4px"
     }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
-        <div style={{ fontFamily: "'Libre Franklin', sans-serif", fontSize: "13px", color: "#f1f5f9", fontWeight: 600 }}>{contact.name}</div>
-        <span style={{ fontSize: "9px", fontFamily: "'JetBrains Mono', monospace", color: stateColor, border: `1px solid ${stateColor}33`, padding: "1px 5px", borderRadius: "2px" }}>{contact.state}</span>
+        <div style={{ fontFamily: "'Libre Franklin', sans-serif", fontSize: "14px", color: "#f1f5f9", fontWeight: 600 }}>{contact.name}</div>
+        <span style={{ fontSize: "10px", fontFamily: "'JetBrains Mono', monospace", color: stateColor, border: `1px solid ${stateColor}33`, padding: "1px 5px", borderRadius: "2px" }}>{contact.state}</span>
       </div>
-      <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "11px", color: "#64748b" }}>{contact.role}</div>
-      {contact.firm && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "10px", color: "#f97316" }}>{contact.firm}</div>}
-      <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "11px", color: "#475569", marginTop: "2px" }}>{contact.phone}</div>
+      <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "12px", color: "#64748b" }}>{contact.role}</div>
+      {contact.firm && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "11px", color: "#f97316" }}>{contact.firm}</div>}
+      <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "12px", color: "#475569", marginTop: "2px" }}>{contact.phone}</div>
     </div>
   );
 }

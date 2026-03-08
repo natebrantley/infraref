@@ -9,17 +9,17 @@ export function SolicitationRow({ sol }) {
       }}
     >
       <div>
-        <div style={{ fontFamily: "'Libre Franklin', sans-serif", fontSize: "12px", color: "#e2e8f0", fontWeight: 500 }}>{sol.title}</div>
-        <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "10px", color: "#64748b", marginTop: "2px" }}>{sol.agency}</div>
+        <div style={{ fontFamily: "'Libre Franklin', sans-serif", fontSize: "13px", color: "#e2e8f0", fontWeight: 500 }}>{sol.title}</div>
+        <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "11px", color: "#64748b", marginTop: "2px" }}>{sol.agency}</div>
       </div>
       <div className="solicitation-meta" style={{ display: "flex", gap: "12px", flexWrap: "wrap", textAlign: "right" }}>
         <div>
-          <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "10px", color: "#94a3b8" }}>Closes</div>
-          <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "11px", color: "#fbbf24" }}>{sol.closes}</div>
+          <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "11px", color: "#94a3b8" }}>Closes</div>
+          <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "12px", color: "#fbbf24" }}>{sol.closes}</div>
         </div>
         <div>
-          <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "10px", color: "#94a3b8" }}>Est. Value</div>
-          <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "11px", color: "#4ade80" }}>{sol.value}</div>
+          <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "11px", color: "#94a3b8" }}>Est. Value</div>
+          <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "12px", color: "#4ade80" }}>{sol.value}</div>
         </div>
       </div>
     </div>

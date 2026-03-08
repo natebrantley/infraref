@@ -7,7 +7,7 @@ export function TagBadge({ tag }) {
   };
   return (
     <span style={{
-      fontSize: "9px", fontFamily: "'JetBrains Mono', monospace",
+      fontSize: "10px", fontFamily: "'JetBrains Mono', monospace",
       fontWeight: 600, padding: "2px 6px", borderRadius: "2px",
       letterSpacing: "0.08em", ...Object.fromEntries(
         (colors[tag] || colors.FED).split(";").filter(Boolean).map(s => {
