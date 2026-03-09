@@ -25,12 +25,12 @@ export function ReferenceItem({ item, onOpenDetail }) {
     >
       <div style={{ display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap" }}>
         <TagBadge tag={item.tag} />
-        <span style={{ fontFamily: "'Libre Franklin', sans-serif", fontSize: "14px", color: "#e2e8f0", fontWeight: 500 }}>
+        <span style={{ fontFamily: "'Libre Franklin', sans-serif", fontSize: "15px", color: "var(--text-primary)", fontWeight: 500 }}>
           {item.label ?? "Untitled"}
         </span>
       </div>
       {open && (
-        <div style={{ marginTop: "6px", fontFamily: "'JetBrains Mono', monospace", fontSize: "12px", color: "#94a3b8", lineHeight: 1.6 }}>
+        <div className="reference-item-note">
           {item.note}
           {hasDetailPage ? (
             <button
