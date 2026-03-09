@@ -151,9 +151,12 @@ export default function InfraRef() {
 
       {/* MAIN CONTENT */}
       <main className="app-main">
-        <div className="app-brand-mobile" aria-hidden="true">
-          <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "30px", color: "#f97316", letterSpacing: "0.12em", lineHeight: 1 }}>INFRAREF</div>
-          <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "9px", color: "#334155", marginTop: "4px", letterSpacing: "0.1em" }}>OREGON · WASHINGTON</div>
+        <div className="app-mobile-top-bar">
+          <div className="app-brand-mobile" aria-hidden="true">
+            <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "30px", color: "#f97316", letterSpacing: "0.12em", lineHeight: 1 }}>INFRAREF</div>
+            <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "9px", color: "#334155", marginTop: "4px", letterSpacing: "0.1em" }}>OREGON · WASHINGTON</div>
+          </div>
+          <span className="nav-toggle-spacer" aria-hidden="true" />
         </div>
         {selectedDetailSlug ? (
           <ProjectDetailView slug={selectedDetailSlug} onBack={() => setSelectedDetailSlug(null)} />
