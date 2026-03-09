@@ -5,4 +5,5 @@ export { SolicitationRow } from "./SolicitationRow.jsx";
 export { DirectoryView } from "./DirectoryView.jsx";
 export { CalendarView } from "./CalendarView.jsx";
 export { ProjectDetailView } from "./ProjectDetailView.jsx";
+export { NewsFeed } from "./NewsFeed.jsx";
 export { AIPanel } from "./AIPanel.jsx";

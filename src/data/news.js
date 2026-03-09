@@ -1,0 +1,86 @@
+/**
+ * Industry and infrastructure news — Oregon & Washington.
+ * Update links and items as needed; consider an API or RSS later.
+ */
+export const NEWS_ITEMS = [
+  {
+    id: "i5-bridge-2026",
+    title: "I-5 Bridge replacement on track to start building 2026",
+    url: "https://www.interstatebridge.org/",
+    source: "IBR Program",
+    date: "2025-05",
+    tag: "OR/WA",
+  },
+  {
+    id: "i5-funding-enr",
+    title: "Big funding steps move Oregon–Washington I-5 Bridge project forward",
+    url: "https://www.enr.com/articles/56707-big-funding-steps-move-oregon-washington-i-5-bridge-project-forward",
+    source: "ENR",
+    date: "2025-05",
+    tag: "OR/WA",
+  },
+  {
+    id: "wsdot-ship-canal",
+    title: "WSDOT announces months-long lane reductions on I-5 Ship Canal Bridge",
+    url: "https://wsdot.wa.gov/about/news",
+    source: "WSDOT",
+    date: "2025-01",
+    tag: "WA",
+  },
+  {
+    id: "i5-funding-djc",
+    title: "Oregon, Washington to seek $1.9B for I-5 bridge work",
+    url: "https://djcoregon.com/",
+    source: "Daily Journal of Commerce",
+    date: "2025-05",
+    tag: "OR/WA",
+  },
+  {
+    id: "ibr-federal-funding",
+    title: "Historic federal funding moves Interstate Bridge Replacement closer to construction",
+    url: "https://wsdot.wa.gov/about/news",
+    source: "WSDOT",
+    date: "2024-12",
+    tag: "OR/WA",
+  },
+  {
+    id: "odot-news",
+    title: "ODOT news and project updates",
+    url: "https://www.oregon.gov/odot/Pages/news.aspx",
+    source: "ODOT",
+    date: "2025",
+    tag: "OR",
+  },
+  {
+    id: "opb-transport",
+    title: "Transportation and infrastructure coverage",
+    url: "https://www.opb.org/topic/transportation/",
+    source: "OPB",
+    date: "2025",
+    tag: "OR",
+  },
+  {
+    id: "sound-transit-news",
+    title: "Sound Transit construction and project news",
+    url: "https://www.soundtransit.org/about/news",
+    source: "Sound Transit",
+    date: "2025",
+    tag: "WA",
+  },
+  {
+    id: "trimet-projects",
+    title: "TriMet capital projects and service news",
+    url: "https://trimet.org/news/",
+    source: "TriMet",
+    date: "2025",
+    tag: "OR",
+  },
+  {
+    id: "seattle-times-transit",
+    title: "Seattle Times transportation and transit",
+    url: "https://www.seattletimes.com/tag/transportation/",
+    source: "Seattle Times",
+    date: "2025",
+    tag: "WA",
+  },
+];

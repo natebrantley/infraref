@@ -7,6 +7,7 @@ import {
   DirectoryView,
   CalendarView,
   ProjectDetailView,
+  NewsFeed,
 } from "./components/index.js";
 
 const DEFAULT_MODULE = MODULES[0]?.id ?? "highway";
@@ -175,6 +176,20 @@ export default function InfraRef() {
           <CalendarView />
         ) : (
           <div className="app-content-grid">
+            {filteredContacts.length > 0 && (
+              <section className="contacts-section" aria-label="Key contacts and resources">
+                <h2 className="contacts-section-heading">
+                  <span className="contacts-section-heading-accent" aria-hidden="true" />
+                  Key Contacts & Resources
+                </h2>
+                <div className="contact-cards-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))", gap: "8px" }}>
+                  {filteredContacts.map((c, ci) => <ContactCard key={ci} contact={c} />)}
+                </div>
+              </section>
+            )}
+
+            <NewsFeed stateFilter={stateFilter} />
+
             {filteredSolicitations.length > 0 && (
               <section className="solicitations-section" aria-label="Active solicitations">
                 <h2 className="solicitations-section-heading">
@@ -223,17 +238,6 @@ export default function InfraRef() {
               )
             )}
 
-            {filteredContacts.length > 0 && (
-              <section className="contacts-section" aria-label="Key contacts and resources">
-                <h2 className="contacts-section-heading">
-                  <span className="contacts-section-heading-accent" aria-hidden="true" />
-                  Key Contacts & Resources
-                </h2>
-                <div className="contact-cards-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))", gap: "8px" }}>
-                  {filteredContacts.map((c, ci) => <ContactCard key={ci} contact={c} />)}
-                </div>
-              </section>
-            )}
           </div>
         )}
           </>

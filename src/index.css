@@ -112,7 +112,8 @@ body {
 /* —— Active Solicitations section —— */
 .solicitations-section,
 .legislation-schedule-section,
-.contacts-section {
+.contacts-section,
+.news-feed-section {
   background: #06080a;
   border: 1px solid #1e2433;
   border-radius: var(--card-radius);
@@ -121,7 +122,8 @@ body {
 
 .solicitations-section-heading,
 .legislation-schedule-section-heading,
-.contacts-section-heading {
+.contacts-section-heading,
+.news-feed-section-heading {
   font-family: "JetBrains Mono", monospace;
   font-size: 11px;
   font-weight: 500;
@@ -133,6 +135,58 @@ body {
   gap: var(--heading-gap);
   line-height: 1.4;
 }
+
+.news-feed-section-heading { color: #f97316; }
+.news-feed-section-heading-accent {
+  width: var(--heading-accent-width);
+  height: 1px;
+  background: #f97316;
+  display: inline-block;
+}
+.news-feed-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.news-feed-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.news-feed-link {
+  flex: 1;
+  min-width: 0;
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  padding: 8px 0;
+  border-left: 2px solid #2a2a2a;
+  padding-left: 12px;
+  transition: border-color 0.15s;
+}
+.news-feed-link:hover { border-left-color: #f97316; }
+.news-feed-link:focus-visible { outline-offset: 4px; }
+.news-feed-title {
+  font-family: "Libre Franklin", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #e2e8f0;
+  line-height: 1.4;
+  display: block;
+}
+.news-feed-link:hover .news-feed-title { color: #f97316; }
+.news-feed-meta {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  color: #64748b;
+  margin-top: 2px;
+  display: block;
+}
+.news-feed-tag { flex-shrink: 0; }
 
 .solicitations-section-heading {
   color: #4ade80;
