@@ -244,6 +244,8 @@ export const CONTENT = {
       { name: "ODOT Finance & Budget Section", role: "STIP, Federal Aid Programs", phone: "503-986-4194", state: "OR" },
       { name: "WSDOT Transportation Finance Office", role: "Federal Programs, Grants", phone: "360-705-7842", state: "WA" },
       { name: "FHWA Oregon Division Office", role: "Federal-Aid Highway Program", phone: "503-587-4730", state: "OR" },
+      { name: "ODOT DBE Program", role: "DBE goals & certification (federal-aid)", phone: "503-986-4350", state: "OR", firm: "ODOT" },
+      { name: "WSDOT Equal Opportunity Contracting", role: "DBE/SBE contracting & compliance", phone: "360-705-7090", state: "WA", firm: "WSDOT" },
     ],
     solicitations: []
   },
@@ -258,8 +260,26 @@ export const CONTENT = {
   directory: {
     title: "Firm & Contact Directory",
     subtitle: "Oregon & Washington — Prequalified Consultants & Agencies",
-    sections: [],
-    contacts: [],
+    sections: [
+      {
+        heading: "DBE/SBE Certification & Programs",
+        items: [
+          { label: "ODOT DBE Program — Civil Rights", tag: "OR", url: "https://www.oregon.gov/odot/Business/OCR/Pages/Disadvantaged-Business-Enterprise.aspx", note: "Federal-aid DBE goals, COBID certification required; 23.43% utilization goal; advisory committee, forms, and contact info." },
+          { label: "Oregon COBID — Certification Office for Business Inclusion and Diversity", tag: "OR", url: "https://www.oregon.gov/biz/programs/cobid/pages/business-resources.aspx", note: "Business Oregon; DBE, MBE, WBE, VBE, ESB, ACDBE certification; required for ODOT DBE participation. 503-986-0075." },
+          { label: "OMWBE — Washington DBE/SBE/PWSBE Certification", tag: "WA", url: "https://omwbe.wa.gov/", note: "Office of Minority and Women's Business Enterprises; DBE certification for WSDOT/federal work; SBE and Public Works Small Business Enterprise; Access Equity portal." },
+          { label: "WSDOT Equal Opportunity in Contracting — Diverse Business Programs", tag: "WA", url: "https://wsdot.wa.gov/business-wsdot/equal-opportunity-contracting/diverse-business-programs", note: "DBE goal setting, bid clearing, pre-construction meetings, capacity building, and compliance; contact EOC for support." },
+          { label: "FHWA DBE Program — Resources & Policy", tag: "FED", url: "https://highways.dot.gov/civil-rights/programs/disadvantaged-business-enterprise-dbe-program", note: "Federal program oversight, eligibility, and resources for federally assisted highway contracts." },
+        ]
+      }
+    ],
+    contacts: [
+      { name: "ODOT Civil Rights — DBE Program", role: "General inquiries, certification & utilization", phone: "503-986-4350", state: "OR", firm: "ODOT" },
+      { name: "Diponker Mukherjee", role: "ODOT DBE Program Manager", phone: "971-283-4636", state: "OR", firm: "ODOT" },
+      { name: "ODOT Small Business Programs Navigators", role: "Small business support & outreach", phone: "503-385-6694", state: "OR", firm: "ODOT" },
+      { name: "OMWBE — Certification & Technical Assistance", role: "DBE/SBE/PWSBE certification (WA)", phone: "360-664-9750", state: "WA", firm: "OMWBE" },
+      { name: "WSDOT Office of Equity and Civil Rights — EOC", role: "Equal opportunity contracting, DBE compliance", phone: "360-705-7090", state: "WA", firm: "WSDOT" },
+      { name: "FHWA Oregon Division", role: "Federal-aid highway & civil rights (OR/WA)", phone: "503-587-4730", state: "FED", firm: "FHWA" },
+    ],
     solicitations: [],
     isDirectory: true
   },

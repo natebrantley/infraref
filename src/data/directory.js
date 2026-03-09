@@ -9,6 +9,8 @@ export const DIRECTORY_FIRMS = [
   { name: "David Evans & Associates (DEA)", type: "Prime/Sub", disciplines: ["Highway","Bridges","Survey","Environmental"], states: ["OR","WA"], city: "Portland / Vancouver", prequalOR: true, prequalWA: true, dbe: false, phone: "503-223-6663" },
   { name: "KPFF Consulting Engineers", type: "Sub", disciplines: ["Bridges","Structures","Water"], states: ["OR","WA"], city: "Portland / Seattle", prequalOR: true, prequalWA: true, dbe: false, phone: "503-227-3251" },
   { name: "Perteet Inc.", type: "Prime/Sub", disciplines: ["Highway","Transit","Environmental"], states: ["WA"], city: "Everett WA", prequalOR: false, prequalWA: true, dbe: true, phone: "425-252-7700" },
+  { name: "Nemariam Engineers & Associates", type: "Sub", disciplines: ["Traffic","Highway","ITS","Lighting"], states: ["OR","WA"], city: "Portland", prequalOR: true, prequalWA: true, dbe: true, phone: "503-746-4386" },
+  { name: "Global Transportation Engineering", type: "Prime/Sub", disciplines: ["Traffic","Highway","Signals","Lighting"], states: ["OR","WA"], city: "Portland", prequalOR: true, prequalWA: true, dbe: true, phone: "503-246-9090" },
   { name: "Kimley-Horn", type: "Sub", disciplines: ["Traffic","Highway","Transit"], states: ["OR","WA"], city: "Portland", prequalOR: true, prequalWA: true, dbe: false, phone: "503-221-2600" },
   { name: "Aspect Consulting", type: "Sub", disciplines: ["Environmental","Geotechnical","Water"], states: ["OR","WA"], city: "Seattle", prequalOR: false, prequalWA: true, dbe: false, phone: "206-325-7230" },
 ];

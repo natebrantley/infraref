@@ -95,8 +95,9 @@ export default function InfraRef() {
 
   const filteredContacts = useMemo(() => {
     if (!module?.contacts) return [];
+    if (activeModule === "directory") return module.contacts;
     return module.contacts.filter((c) => matchStateFilter(stateFilter, c.state));
-  }, [module, stateFilter]);
+  }, [module, stateFilter, activeModule]);
 
   const filteredSolicitations = useMemo(() => {
     if (!module?.solicitations) return [];
