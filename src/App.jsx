@@ -77,6 +77,12 @@ export default function InfraRef() {
     closeNav();
   };
 
+  const goHome = () => {
+    setActiveModule(DEFAULT_MODULE);
+    setSelectedDetailSlug(null);
+    closeNav();
+  };
+
   const filteredSections = useMemo(() => {
     if (!module?.sections) return [];
     return module.sections
@@ -104,8 +110,15 @@ export default function InfraRef() {
       {/* LEFT NAV */}
       <nav className={`app-nav ${navOpen ? "nav-open" : ""}`} aria-label="Main">
         <div style={{ padding: "20px 16px 16px", borderBottom: "1px solid #1e2433" }}>
-          <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "30px", color: "#f97316", letterSpacing: "0.12em", lineHeight: 1 }}>INFRAREF</div>
-          <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "9px", color: "#334155", marginTop: "4px", letterSpacing: "0.1em" }}>OREGON · WASHINGTON</div>
+          <button
+            type="button"
+            className="app-nav-logo"
+            onClick={goHome}
+            aria-label="InfraRef home"
+          >
+            <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "30px", color: "#f97316", letterSpacing: "0.12em", lineHeight: 1 }}>INFRAREF</div>
+            <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "9px", color: "#334155", marginTop: "4px", letterSpacing: "0.1em" }}>OREGON · WASHINGTON</div>
+          </button>
           <div style={{ display: "flex", gap: "4px", marginTop: "8px" }}>
             {["ALL","OR","WA"].map(s => (
               <button
@@ -153,10 +166,15 @@ export default function InfraRef() {
       {/* MAIN CONTENT */}
       <main className="app-main">
         <div className="app-mobile-top-bar">
-          <div className="app-brand-mobile" aria-hidden="true">
+          <button
+            type="button"
+            className="app-brand-mobile app-nav-logo"
+            onClick={goHome}
+            aria-label="InfraRef home"
+          >
             <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "30px", color: "#f97316", letterSpacing: "0.12em", lineHeight: 1 }}>INFRAREF</div>
             <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "9px", color: "#334155", marginTop: "4px", letterSpacing: "0.1em" }}>OREGON · WASHINGTON</div>
-          </div>
+          </button>
           <span className="nav-toggle-spacer" aria-hidden="true" />
         </div>
         {selectedDetailSlug ? (
